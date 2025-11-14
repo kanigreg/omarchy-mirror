@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Install necessary packages
+pacman -S --needed --noconfirm base-devel git
+# Suppress the error when make package as root
+sed --in-place -e 's/exit $E_ROOT//' /usr/bin/makepkg
+
+git clone https://aur.archlinux.org/"$1".git /var/cache/aur/"$1"
+makepkg --syncdeps --noconfirm --needed --dir "$1"
+cp /var/cache/aur/"$1".*.pkg.tar.zst /var/cache/pacman/pkg/

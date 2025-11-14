@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo cp ../nginx/nginx.conf /etc/nginx/
+if systemctl is-active --quiet nginx; then
+  sudo systemctl reload nginx
+else
+  sudo systemctl start nginx
+fi

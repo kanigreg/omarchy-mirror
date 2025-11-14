@@ -1,0 +1,8 @@
+#!/bin/bash
+
+docker run --rm -it \
+  -v "../docker/bin:/usr/local/bin" \
+  -v "../docker/pacman/pacman.conf:/etc/pacman.conf" \
+  -v /srv/http/pacman/omarchy/os/x86_64:/var/cache/pacman/pkg \
+  archlinux "$1"
+
