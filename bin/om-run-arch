@@ -6,5 +6,5 @@ docker run --rm -it \
   -v "$OMARCHY_MIRROR/docker/bin:/usr/local/bin" \
   -v "$OMARCHY_MIRROR/docker/pacman/pacman.conf:/etc/pacman.conf" \
   -v /srv/http/pacman/omarchy/os/x86_64:/var/cache/pacman/pkg \
-  archlinux "$1"
+  archlinux "$@"
 
