@@ -1,10 +1,20 @@
 #!/bin/bash
 
+CACHE_DIR=/var/cache/aur/"$1"
+
 # Install necessary packages
 pacman -S --needed --noconfirm base-devel git
+
 # Suppress the error when make package as root
 sed --in-place -e 's/exit $E_ROOT//' /usr/bin/makepkg
 
-git clone https://aur.archlinux.org/"$1".git /var/cache/aur/"$1"
+# Download and build package
+git clone https://aur.archlinux.org/"$1".git "$CACHE_DIR"
 makepkg --syncdeps --noconfirm --needed --dir "$1"
-cp /var/cache/aur/"$1".*.pkg.tar.zst /var/cache/pacman/pkg/
+
+# Log and copy packages to pacman cache dir
+ls "$CACHE_DIR"/*.pkg.tar.zst
+cp "$CACHE_DIR"/*.pkg.tar.zst /var/cache/pacman/pkg/
+
+# Add builded package to omarchy repository
+repo-add --new /var/cache/pacman/pkg/omarchy.db.tar.zst /var/cache/pacman/pkg/"$1"*.pkg.tar.zst
