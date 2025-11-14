@@ -1,8 +1,11 @@
 #!/bin/bash
 
+OMARCHY_MIRROR="$HOME"/.local/share/omarchy-mirror
+
 docker run --rm -it \
-  -v "../docker/bin:/usr/local/bin" \
-  -v "../docker/pacman/pacman.conf:/etc/pacman.conf" \
+  -v "$OMARCHY_MIRROR/docker/bin:/root/bin" \
+  -v "$OMARCHY_MIRROR/docker/pacman/pacman.conf:/etc/pacman.conf" \
   -v /srv/http/pacman/omarchy/os/x86_64:/var/cache/pacman/pkg \
-  archlinux "$1"
+  archlinux \
+  /root/bin/"$1"
 
