@@ -10,7 +10,7 @@ sed --in-place -e 's/exit $E_ROOT//' /usr/bin/makepkg
 
 # Download and build package
 git clone https://aur.archlinux.org/"$1".git "$CACHE_DIR"
-makepkg --syncdeps --noconfirm --needed --dir "$1"
+makepkg --syncdeps --noconfirm --needed --dir "$CACHE_DIR"
 
 # Log and copy packages to pacman cache dir
 ls "$CACHE_DIR"/*.pkg.tar.zst
