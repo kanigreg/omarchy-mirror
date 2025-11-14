@@ -10,4 +10,4 @@ fi
 
 pacman -Syy
 pacman -Syw "$(pacman -Slq omarchy)"
-repo-add /var/cache/pacman/pkg/omarchy.db.tar.zst /var/cache/pacman/pkg/*.pkg.tar.zst
+repo-add --new /var/cache/pacman/pkg/omarchy.db.tar.zst /var/cache/pacman/pkg/*.pkg.tar.zst
