@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OMARCHY_MIRROR="$HOME"/.local/share/omarchy-mirror
+OMARCHY_MIRROR=~/.local/share/omarchy-mirror
 
 sudo cp "$OMARCHY_MIRROR"/nginx/nginx.conf /etc/nginx/
 if systemctl is-active --quiet nginx; then

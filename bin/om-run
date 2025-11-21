@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OMARCHY_MIRROR="$HOME"/.local/share/omarchy-mirror
+OMARCHY_MIRROR=~/.local/share/omarchy-mirror
 
 docker run --rm -it \
   -v "$OMARCHY_MIRROR/docker/bin:/usr/local/bin" \
