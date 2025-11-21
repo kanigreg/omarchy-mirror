@@ -1,18 +1,10 @@
 #!/bin/bash
 
 pacman -Syy
-# pacman -Syw "$(pacman -Slq omarchy)"
-
-MIRROR="https://pkgs.omarchy.org/x86_64"
-
-pacman -Sl omarchy | while read -r _repo pkg ver; do
-    pkgfile="$pkg-$ver-x86_64.pkg.tar.zst"
-    cachefile="/var/cache/pacman/pkg/$pkgfile"
-
-    if [ ! -f "$cachefile" ]; then
-        echo "Downloading $pkgfile..."
-        curl -fL -o "$cachefile" "$MIRROR/$pkgfile"
-    fi
-done
+pacman -Syw "$(pacman -Slq omarchy)"
 
 repo-add --new /var/cache/pacman/pkg/omarchy.db.tar.zst /var/cache/pacman/pkg/*.pkg.tar.zst
+
+# Delete packages, except most recent two versions
+pacman -S pacman-contrib --noconfirm --needed
+paccache -rv -k 2
